@@ -16,8 +16,8 @@ class TSOproxy(dump.DumpMaster):
       self.shutdown()
 
 opcje = dump.Options()
-#opcje.scripts= [ 'TradeDumper.py', 'SzpieGwiazdor.py', 'XMPPUserAuth.py']
-opcje.scripts= [ 'TradeDumper.py', 'SzpieGwiazdor.py', ]
+opcje.scripts= [ 'TradeDumper.py', 'SzpieGwiazdor.py', 'XMPPUserAuth.py']
+#opcje.scripts= [ 'TradeDumper.py', 'SzpieGwiazdor.py', ]
 config= proxy.ProxyConfig  (port=5310,  host='' )
 server= proxy.server.ProxyServer(config)
 
