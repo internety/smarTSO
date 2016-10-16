@@ -21,7 +21,7 @@ opcje.scripts= [ 'TradeDumper.py', 'SzpieGwiazdor.py', 'XMPPUserAuth.py']
 config= proxy.ProxyConfig  (port=5310,  host='' )
 server= proxy.server.ProxyServer(config)
 
-print "Launching TSOProxy at localhost:5310"
+print "Launching TSOProxy on port 5310"
 print "scripts loaded: %s "%str(opcje.scripts)
 
 try:

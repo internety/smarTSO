@@ -167,6 +167,13 @@ class SGD(object):
             self.buffName_string= buffName_string
             self.amount         = amount
             self.kiedyZlapanoTS = time().__int__()
+            
+        def __eq__(self, o):
+            return self.playerID == o.playerID \
+               and self.playerName == o.playerName \
+               and self.resourceName_string == o.resourceName_string \
+               and self.buffName_string == o.buffName_string \
+               and self.amount == o.amount
 
         @property
         def _sql_ins_data(self):
