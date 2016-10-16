@@ -123,7 +123,7 @@ class SGD(object):
         return [self.StarItem( pID, pN, **pd ) for pd in buffsvector]
         
     def _pom_insert_star_list(self, pID, pN, star_menu):
-        sqllines = [b._sql_ins_data() for b in star_menu]
+        sqllines = [b._sql_ins_data for b in star_menu]
         query= """  INSERT IGNORE INTO gwiazda
                   ( playerID,          playerName,            amount,
                     buffName_string,   resourceName_string,   kiedyZlapanoTS  )  
@@ -168,6 +168,7 @@ class SGD(object):
             self.amount         = amount
             self.kiedyZlapanoTS = time().__int__()
 
+        @property
         def _sql_ins_data(self):
             """ wypluwa sql insert values:
                 (  playerID,          playerName,     resourceName_string,
