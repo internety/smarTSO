@@ -27,11 +27,9 @@ from time import time
 import logging, xmltodict
 global log
 
-cfg= { 'mysql_user' : 'smartso',
-       'mysql_pass' : '6yMODY)gxpGp',
-       'mysql_db'   : 'smartso',
-       'mysql_host' : '127.0.0.1',
-       'unique_pattern' : "596bc25a-00ec-46c6-806f-73855d5c2325",  }
+cfg= {  'unique_pattern' : "596bc25a-00ec-46c6-806f-73855d5c2325",  }
+from .config import dbcfg
+cfg.update(dbcfg)
 
 if '__file__' in locals().keys():
     BASEDIR= path.abspath(path.dirname(__file__))

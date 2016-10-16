@@ -7,13 +7,6 @@ zapamiętuje zawartości gwiazdek graczy parsując gałęzie "playersOnMap".
 wyniki lądują w tabeli 'gwiazda'
 
 
-#####  parametry konfiguracji  #####
-
-cfg_sgd= { 'mysql_user' : 'smartso',
-           'mysql_pass' : '6yMODY)gxpGp',
-           'mysql_db'   : 'smartso',
-           'mysql_host' : '127.0.0.1'    }
-instancja = SGD(**cfg_sgd)
 
 
 
@@ -185,7 +178,7 @@ class SGD(object):
                     self.resourceName_string,   self.kiedyZlapanoTS
 ###############################################################################      
                     
-from .config import cfg_sgd
+from .config import dbcfg as cfg_sgd
 sgd=SGD(**cfg_sgd)
 
 

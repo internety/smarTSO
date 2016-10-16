@@ -12,15 +12,7 @@
 
 #####  parametry konfiguracji instancji TradeDumper'a  #####
 
-cfg_ttd= { 'trSize' : 64,
-           'mmatch' : 25,
-           'watchT' : 29, 
-           'reqryT': 300,
-           'mysql_user' : 'smartso',
-           'mysql_pass' : '6yMODY)gxpGp',
-           'mysql_db' : 'smartso',
-           'mysql_host' : '127.0.0.1',
-           'bindings_sqlite_file': path.join(BASEDIR,'sqlite_pnr.db')  }
+
             
 TTD("realmName", **cfg_ttd)
 
@@ -476,7 +468,13 @@ class TTD(object):
             else False
 
             
-from .config import cfg_ttd
+from .config import dbcfg
+cfg_ttd= { 'trSize' : 64,
+           'mmatch' : 25,
+           'watchT' : 29, 
+           'reqryT': 300,
+           'bindings_sqlite_file': path.join(BASEDIR,'sqlite_pnr.db')  }
+cfg_ttd.update(dbcfg)
             
 ttd=TTD("Kolonia", **cfg_ttd)
 
@@ -512,49 +510,4 @@ def response(context, flow):
                         thread.interrupt_main()
     
     
-"""
-    def znajdz_prosty_zysk( self ):
-        ""
-        pracuje na pamiętanej bazie danych, szuka prostego zysku:
-            a) robi listę produktów obecnych w skupie i w sprzedaży
-            b) bierze pod uwagę offki które z obu stron mają produkty z pkt a.
-            c)
-        ""
-        offki   = self.s.query( Oferta ).all()
-        co      = set([o.co             for o in offki ])
-        zaco    = set([o.za_co          for o in offki ])
-        tuitu   = co & zaco
-        o2i2    = [o for o in offki if (o.co in tuitu) and (o.za_co in tuitu) ]
-        cozaco  = list(set([(o.co, o.za_co)  for o in offki ]))
-        wyniki  = []
 
-
-        for i in cozaco:
-            rev = (i[1], i[0])
-            if rev in cozaco:
-                cozaco.remove(rev)
-
-        # czyżby to? :
-            ##            [ (i[1], i[0]) for i in cozaco if not i in cozaco ]
-
-
-
-        for i in cozaco:
-            co, zaco = i
-            b4cozaco = self.s.query(    Oferta                )\
-                             .filter(   Oferta.co    == co    )\
-                             .filter(   Oferta.za_co == zaco  )\
-                             .order_by( Oferta.xco_eq_onezaco )\
-                             .first()
-            b4zacoco = self.s.query(    Oferta                )\
-                             .filter(   Oferta.co    == zaco  )\
-                             .filter(   Oferta.za_co == co    )\
-                             .order_by( Oferta.xco_eq_onezaco )\
-                             .first()
-            if b4cozaco and b4zacoco:
-                b4cozacox = b4cozaco.xco_eq_onezaco
-                b4zacocox = b4zacoco.xco_eq_onezaco
-                if b4cozacox * b4zacocox > 1:
-                    wyniki.append((b4cozaco, b4zacoco))
-        return wyniki
-"""
